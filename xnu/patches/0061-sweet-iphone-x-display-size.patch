@@ -1,4 +1,4 @@
-﻿--- a/iokit/Kernel/arm/SweetFramebuffer.cpp
+--- a/iokit/Kernel/arm/SweetFramebuffer.cpp
 +++ b/iokit/Kernel/arm/SweetFramebuffer.cpp
 @@ -61,7 +61,17 @@
  #define SWEET_FB_NOTIFY_TYPES           8
