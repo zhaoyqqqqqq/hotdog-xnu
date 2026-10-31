@@ -180,7 +180,7 @@ index 0000000..8f4c808
 +	for (unsigned int y = 0; y < EARLY_CELL_H; y++) {
 +		volatile uint32_t *line = EARLY_FB + (early_row * EARLY_CELL_H + y) * EARLY_STRIDE;
 +		for (unsigned int x = 0; x < EARLY_WIDTH; x++) {
-+			line[x] = 0xff000000u;
++			line[x] = 0xff0000ffu;
 +		}
 +	}
 +}
