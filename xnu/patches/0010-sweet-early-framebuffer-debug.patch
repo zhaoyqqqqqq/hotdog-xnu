@@ -1,4 +1,4 @@
-diff --git a/osfmk/arm/arm_init.c b/osfmk/arm/arm_init.c
+﻿diff --git a/osfmk/arm/arm_init.c b/osfmk/arm/arm_init.c
 index e26a1d7..e3579f1 100644
 --- a/osfmk/arm/arm_init.c
 +++ b/osfmk/arm/arm_init.c
@@ -96,10 +96,10 @@ index ccbb188..777aca4 100644
  
 +#if defined(SWEET)
 +	/* Stage 0: white 64x32 band, no stack or page tables needed. */
-+	MOV64	x0, (0x9c000000 + 2368 * 4320)
++	MOV64	x0, (0x9c000000 + 3088 * 5760)
 +	mov		w1, #-1
 +	mov		x2, #32
-+	mov		x4, #4320
++	mov		x4, #5760
 +Lsweet_mark_row:
 +	mov		x3, #64
 +	mov		x5, x0
@@ -159,9 +159,9 @@ index 0000000..8f4c808
 +#include <kern/misc_protos.h>
 +
 +#define EARLY_FB ((volatile uint32_t *)(uintptr_t)0x9c000000)
-+#define EARLY_WIDTH 1080u
-+#define EARLY_HEIGHT 2400u
-+#define EARLY_STRIDE (4320u / 4)
++#define EARLY_WIDTH 1440u
++#define EARLY_HEIGHT 3120u
++#define EARLY_STRIDE (5760u / 4)
 +#define EARLY_SCALE 2u
 +#define EARLY_CELL_W (8u * EARLY_SCALE)
 +#define EARLY_CELL_H (16u * EARLY_SCALE)
