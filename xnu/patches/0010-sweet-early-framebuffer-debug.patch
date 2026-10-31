@@ -180,7 +180,7 @@ index 0000000..8f4c808
 +	for (unsigned int y = 0; y < EARLY_CELL_H; y++) {
 +		volatile uint32_t *line = EARLY_FB + (early_row * EARLY_CELL_H + y) * EARLY_STRIDE;
 +		for (unsigned int x = 0; x < EARLY_WIDTH; x++) {
-+			line[x] = 0xff0000ffu;
++			line[x] = 0xff000000u;
 +		}
 +	}
 +}
@@ -238,7 +238,17 @@ index 0000000..8f4c808
 +	if (early_disabled || stage > 8) {
 +		return;
 +	}
-+	uint32_t color = 0xff00ff00u | (stage * 28u << 16);
++	if (stage == 1) {
++		/* hotdog M1 probe: paint the whole splash buffer magenta once, so a
++		 * retained panel frame can never be mistaken for this boot's output. */
++		for (unsigned int py = 0; py < EARLY_HEIGHT; py++) {
++			volatile uint32_t *row = EARLY_FB + py * EARLY_STRIDE;
++			for (unsigned int px = 0; px < EARLY_WIDTH; px++) {
++				row[px] = 0xffff00ffu;
++			}
++		}
++		__asm__ volatile("dsb sy" ::: "memory");
++	}+	uint32_t color = 0xff00ff00u | (stage * 28u << 16);
 +	for (unsigned int y = EARLY_HEIGHT - 32; y < EARLY_HEIGHT; y++) {
 +		for (unsigned int x = stage * 64; x < (stage + 1) * 64; x++) {
 +			EARLY_FB[y * EARLY_STRIDE + x] = color;
