@@ -1,4 +1,4 @@
---- a/iokit/Kernel/arm/SweetFramebuffer.cpp
+﻿--- a/iokit/Kernel/arm/SweetFramebuffer.cpp
 +++ b/iokit/Kernel/arm/SweetFramebuffer.cpp
 @@ -61,7 +61,17 @@
  #define SWEET_FB_NOTIFY_TYPES           8
@@ -103,10 +103,10 @@
  	}
 +	int native = 0;
 +	PE_parse_boot_argn("sweetfb_native", &native, sizeof(native));
-+	fLogicalW = native ? 1080 : 1125;
-+	fLogicalH = native ? 2400 : 2436;
-+	fOffX = (fLogicalW - 1080) / 2;
-+	fOffY = (fLogicalH - 2400) / 2;
++	fLogicalW = native ? 1440 : 1125;
++	fLogicalH = native ? 3120 : 2436;
++	fOffX = (fLogicalW - 1440) / 2;
++	fOffY = (fLogicalH - 3120) / 2;
  	/* The digitizer covers the main display (backboardd maps it 1:1). */
  	setProperty("DisplayIntegrated", kOSBooleanTrue);
  	setProperty("SurfaceWidth", (unsigned long long)(68 << 16), 32);	/* mm, 16.16 */
